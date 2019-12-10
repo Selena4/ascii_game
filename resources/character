@@ -1,0 +1,16 @@
+{
+"name":"",
+"floor":1,
+"class":"",
+"exp" : 0,
+"max_exp": 100,
+"hp":100,
+"hp_max":100,
+"str":0,
+"def":0,
+"tal":0,
+"dex":0,
+"overview": 11,
+"inventory":[],
+"skills": []
+}
