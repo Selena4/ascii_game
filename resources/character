@@ -1,16 +1,1 @@
-{
-"name":"",
-"floor":1,
-"class":"",
-"exp" : 0,
-"max_exp": 100,
-"hp":100,
-"hp_max":100,
-"str":0,
-"def":0,
-"tal":0,
-"dex":0,
-"overview": 11,
-"inventory":[],
-"skills": []
-}
+{"name": "scarlet", "floor": 1, "level": 1, "icon": "R", "class": "rogue", "exp": 0, "max_exp": 100, "hp": 80, "hp_max": 80, "str": 6, "def": 2, "tal": 1, "dex": 5, "overview": 11, "inventory": [], "skills": []}

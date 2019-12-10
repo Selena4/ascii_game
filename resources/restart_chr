@@ -1,6 +1,8 @@
 {
 "name":"",
 "floor":1,
+"level":1,
+"icon":"@",
 "class":"",
 "exp" : 0,
 "max_exp": 100,
