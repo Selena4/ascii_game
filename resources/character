@@ -1,1 +1,1 @@
-{"name": "scarlet", "floor": 1, "level": 1, "icon": "R", "class": "rogue", "exp": 0, "max_exp": 100, "hp": 80, "hp_max": 80, "str": 6, "def": 2, "tal": 1, "dex": 5, "overview": 11, "inventory": [], "skills": []}
+{"name": "scarlet", "floor": 1, "level": 1, "icon": "@", "class": "knight", "exp": 0, "max_exp": 100, "hp": 120, "hp_max": 120, "str": 4, "def": 6, "tal": 2, "dex": 1, "overview": 11, "inventory": [], "skills": []}

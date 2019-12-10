@@ -3,7 +3,7 @@ import resources.floors as floor
 import core.start as select_class
 import core.actions as action
 import core.getch as getch
-import json, os
+import json, os,time
 """_________________________________________"""
 
 def main():
