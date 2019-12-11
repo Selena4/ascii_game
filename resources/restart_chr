@@ -2,6 +2,8 @@
 "name":"",
 "floor":1,
 "level":1,
+"gold":0,
+"pet":"",
 "icon":"@",
 "class":"",
 "exp" : 0,
