@@ -1,6 +1,7 @@
 """_________________________________________"""
 import resources.floors as floor
 import core.start as select_class
+import core.intro as intro
 import core.actions as action
 import core.getch as getch
 import json, os,time, sys, threading, random
@@ -8,15 +9,18 @@ import json, os,time, sys, threading, random
 
 #I recommend you run this file with cmd or terminal otherwise you can get errors
 def main():
+	intro.start()
 	global floor_now, stat, x_pl, y_pl, water, oxy, text, sym_now, log
 	water = False
+	start_game = False
 	log = 'log:\n\n'
 	oxy = 30
 	text = ''
 	stat = json.loads(open('resources/save/character','r').read())
 	if stat['name'] == '':
 		stat = select_class.char.start_()
-		action.game.save_char(stat)
+		action.data.save_char(stat)
+		start_game = True
 	floor_now,x_pl,y_pl = floor.level.get_lvl(stat['floor'])[0], floor.level.get_lvl(stat['floor'])[1], floor.level.get_lvl(stat['floor'])[2]
 	sym_now = floor_now[y_pl][x_pl]
 	floor_now = action.game.set_marker(stat['icon'],floor_now,x_pl,y_pl)
@@ -24,7 +28,12 @@ def main():
 	while True:
 		os.system('cls')
 		action.game.show_table(floor_now,stat['overview'],x_pl,y_pl,stat['name'],stat['icon'],stat['class'],stat['level'],stat['exp'],stat['max_exp'],stat['hp'],stat['hp_max'], stat['gold'], water,oxy, text, sym_now) #name, icon, class_, level, exp, max_exp, hp, hp_max
-		key = getch.getch_().decode('utf-8').upper()
+		while True:
+			try:
+				key = getch.getch_().decode('utf-8').upper()
+				break
+			except:
+				continue
 		if key in ['W','A','S','D']:
 			floor_now,x_pl,y_pl, sym_now, text = action.game.move(key,floor_now,x_pl,y_pl, sym_now,stat['icon'])
 		else:
@@ -40,7 +49,8 @@ def main():
 			if oxy < 30:
 				oxy += 1
 		if stat['hp'] <= 0:
-			action.game.relive()
+			os.system('cls')
+			input('oh sorry man. as I see, you are dead, but don’t worry, it’s temporary')
 			sym_now = ' '
 			stat['hp'] = stat['hp_max']
 			floor_now,x_pl,y_pl = floor.level.get_lvl(stat['floor'])[0], floor.level.get_lvl(stat['floor'])[1], floor.level.get_lvl(stat['floor'])[2]

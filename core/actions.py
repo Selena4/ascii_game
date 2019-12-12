@@ -2,16 +2,6 @@ import json,os, sys,time
 import core.getch as getch
 
 class game:
-	def save_char(stat):
-		with open("resources/save/character", "w") as write_file:
-			json.dump(stat, write_file)
-	def restart_game():
-		stat = json.loads(open('resources/restart_chr','r').read())
-		with open("resources/save/character", "w") as write_file:
-			json.dump(stat, write_file)
-	def relive():
-		os.system('cls')
-		input('oh sorry man. as I see, you are dead, but don’t worry, it’s temporary')
 	def show_table(table,overview,x,y,name, icon, class_, level, exp, max_exp, hp, hp_max, gold, water, oxy,text, sym):
 		count_enemy = 0	
 		for line in table:
@@ -109,7 +99,7 @@ class game:
 		if key == "Z":
 			os.system('cls')
 			if input('are you sure?[y/n]').lower() == 'y':
-				game.save_char(stat)
+				data.save_char(stat)
 				exit()
 			else:
 				return
@@ -122,3 +112,14 @@ class game:
 			os.system('cls')
 			print(log)
 			input()
+class data:
+	def save_char(stat):
+		with open("resources/save/character", "w") as write_file:
+			json.dump(stat, write_file)
+	def restart_game():
+		stat = json.loads(open('resources/restart_chr','r').read())
+		with open("resources/save/character", "w") as write_file:
+			json.dump(stat, write_file)
+	def last_save():
+		stat = json.loads(open('resources/save/chracter','r').read())
+		return stat
