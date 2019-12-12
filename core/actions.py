@@ -16,7 +16,7 @@ class game:
 			x = len(table[y]) - overview//2 -1
 		if y + (overview//2) > len(table) -1: 
 			y = len(table) - overview//2 -1
-		output = '\r\n ' +'-'*((overview//2)*2+5) + '\n'
+		output = '\n ' +'-'*((overview//2)*2+5) + '\n'
 		output = output +' |' + ' '*((overview//2)*2 + 3) + '|      [' + icon + '] '+ name + ' ' + str(level) + ' lvl (' + str(hp) + '/' + str(hp_max) + ' hp) | gold: ' + str(gold)  + '\n'
 		t = 0
 		for line in table[y-(overview//2):y+(overview//2)+1]:
@@ -35,7 +35,7 @@ class game:
 			t += 1
 		output = output + ' |' + ' '*((overview//2)*2 + 3) + '|\n'
 		output = output + ' ' +'-'*((overview//2)*2+3)+'MAP\n'
-		output = output + '\n' +text
+		output = output + '\n >> ' +text
 		print(output)
 	def set_marker(marker,table,x,y):
 		table[y] = table[y][:x] + marker + table[y][x+1:]
@@ -87,9 +87,13 @@ class game:
 		if sym in fly_sym:
 			game.set_marker(sym,floor,x,y)
 		return floor,x,y,sym, text
-	def use(key, stat, log):
+	def use(key, stat, log, os_):
+		if os_ == 'lin':
+			clear = 'clear'
+		elif os_ == 'win':
+			clear = 'cls'
 		if key == "H":
-			os.system('cls')
+			os.system(clear)
 			print('* L - legend of map')
 			print('* I - show inventory')
 			print('* Z - exit with save')
@@ -99,19 +103,20 @@ class game:
 			print('\n[Enter]')
 			getch.getch()
 		if key == "Z":
-			os.system('cls')
+			os.system(clear)
 			if input('are you sure?[y/n]').lower() == 'y':
 				data.save_char(stat)
 				exit()
 			else:
 				return
 		if key == 'I':
+			os.system(clear)
 			print('inventory:\n')
 			for item in stat['inventory']:
 				print(item)
 			getch.getch()
 		if key == 'G':
-			os.system('cls')
+			os.system(clear)
 			print(log)
 			input()
 class data:
