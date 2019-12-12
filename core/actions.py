@@ -12,7 +12,10 @@ class game:
 	def relive():
 		os.system('cls')
 		input('oh sorry man. as I see, you are dead, but don’t worry, it’s temporary')
-	def show_table(table,overview,x,y,name, icon, class_, level, exp, max_exp, hp, hp_max, gold, water, oxy,text):
+	def show_table(table,overview,x,y,name, icon, class_, level, exp, max_exp, hp, hp_max, gold, water, oxy,text, sym):
+		count_enemy = 0	
+		for line in table:
+			count_enemy = count_enemy + line.count('E')
 		x_pl = x
 		y_pl = y
 		if y - (overview//2) < 0:
@@ -28,11 +31,11 @@ class game:
 		t = 0
 		for line in table[y-(overview//2):y+(overview//2)+1]:
 			if t == 1:
-				output = output +' | ' + line[x-(overview//2):x+(overview//2)+1] + ' |      class: ' + class_ + '\n'
+				output = output +' | ' + line[x-(overview//2):x+(overview//2)+1] + ' |      class: ' + class_ + ' | symbol: ' + sym + '\n'
 			elif t == 3:
 				output = output + ' | ' + line[x-(overview//2):x+(overview//2)+1] + ' |      exp: ' + str(exp) + ' / ' + str(max_exp) + '\n'
 			elif t == 5: 
-				output = output +' | ' + line[x-(overview//2):x+(overview//2)+1] + ' |      x: ' + str(x_pl+1) + ', y:' + str(y_pl+1) + '\n'
+				output = output +' | ' + line[x-(overview//2):x+(overview//2)+1] + ' |      x: ' + str(x_pl+1) + ', y:' + str(y_pl+1) + ' | count emenies: '+ str(count_enemy) +'\n'
 			elif t == 7:
 				output = output + ' | ' + line[x-(overview//2):x+(overview//2)+1] + ' |      key \'H\' - show helping table \n'
 			elif t == 9 and water:
@@ -43,8 +46,7 @@ class game:
 		output = output + ' |' + ' '*((overview//2)*2 + 3) + '|\n'
 		output = output + ' ' +'-'*((overview//2)*2+3)+'MAP\n'
 		output = output + '\n' +text
-		sys.stdout.write(output)
-		sys.stdout.flush()
+		print(output)
 	def set_marker(marker,table,x,y):
 		table[y] = table[y][:x] + marker + table[y][x+1:]
 		return table
@@ -78,7 +80,7 @@ class game:
 			game.set_marker(icon,floor,x,y+1)
 			game.set_marker(last_sym,floor,x,y)
 			return floor, x,y+1,sym, ''
-	def use(key, stat):
+	def use(key, stat, log):
 		if key == "H":
 			os.system('cls')
 			print('* L - legend of map')
@@ -99,3 +101,7 @@ class game:
 			for item in stat['inventory']:
 				print(item)
 			getch.getch()
+		if key == 'G':
+			os.system('cls')
+			print(log)
+			input()
