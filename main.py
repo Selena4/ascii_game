@@ -56,14 +56,14 @@ def spawning_enemies():
 		count_enemy = 0
 		for line in floor_now:
 			count_enemy = count_enemy + line.count('E')
-		if count_enemy < 500:
+		if count_enemy < 100:
 			while True:
 				x_en = random.randint(0,len(floor_now[0])-1)
 				y_en = random.randint(0,len(floor_now)-1)
 				if floor_now[y_en][x_en] == '.':
+
 					floor_now = action.game.set_marker('E',floor_now,x_en,y_en)
 					log = log + 'enemy spawned: ' + str(x_en+1) + ' ' + str(y_en+1) + '\n'
-					time.sleep(10) 
 					break
 
 if __name__ == "__main__":

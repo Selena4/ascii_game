@@ -52,34 +52,51 @@ class game:
 		return table
 	def move(key,floor,x,y,last_sym,icon):
 		objects_sym = ['/','\\','-','_', '|']
+		fly_sym = ["*","#"]
 		if key  == 'W':
 			if y - 1  < 0 or floor[y-1][x] in objects_sym: 
-				return floor,x,y,last_sym, 'none'
-			sym = floor[y-1][x]  
-			game.set_marker(icon,floor,x,y-1)
-			game.set_marker(last_sym,floor,x,y)
-			return floor, x,y-1,sym, ''
+				sym = last_sym
+				text = 'none'
+
+			else:
+				sym = floor[y-1][x]  
+				game.set_marker(icon,floor,x,y-1)
+				game.set_marker(last_sym,floor,x,y)
+				y = y - 1
+				text = ''
 		if key  == 'D':
 			if x + 1  > len(floor[y])-1 or floor[y][x+1] in objects_sym:
-				return floor,x,y,last_sym, 'none'
-			sym = floor[y][x+1]  
-			game.set_marker(icon,floor,x+1,y)
-			game.set_marker(last_sym,floor,x,y)
-			return floor, x+1,y,sym, ''
+				sym = last_sym
+				text = 'none'
+			else:
+				sym = floor[y][x+1]  
+				game.set_marker(icon,floor,x+1,y)
+				game.set_marker(last_sym,floor,x,y)
+				x = x + 1
+				text = ''
 		if key  == 'A':
 			if x - 1  < 0 or floor[y][x-1] in objects_sym: 
-				return floor,x,y,last_sym, 'none'
-			sym = floor[y][x-1]  
-			game.set_marker(icon,floor,x-1,y)
-			game.set_marker(last_sym,floor,x,y)
-			return floor, x-1,y,sym, ''
+				sym = last_sym
+				text = 'none'
+			else:
+				sym = floor[y][x-1]  
+				game.set_marker(icon,floor,x-1,y)
+				game.set_marker(last_sym,floor,x,y)
+				x = x - 1
+				text = ''
 		if key  == 'S':
 			if y + 1  > len(floor)-1 or floor[y+1][x] in objects_sym: 
-				return floor,x,y,last_sym, 'none'
-			sym = floor[y+1][x]  
-			game.set_marker(icon,floor,x,y+1)
-			game.set_marker(last_sym,floor,x,y)
-			return floor, x,y+1,sym, ''
+				sym = last_sym
+				text = 'none'
+			else:
+				sym = floor[y+1][x]  
+				game.set_marker(icon,floor,x,y+1)
+				game.set_marker(last_sym,floor,x,y)
+				y = y + 1
+				text = ''
+		if sym in fly_sym:
+			game.set_marker(sym,floor,x,y)
+		return floor,x,y,sym, text
 	def use(key, stat, log):
 		if key == "H":
 			os.system('cls')
