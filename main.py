@@ -9,7 +9,7 @@ import json, os,time, sys, threading, random
 
 #I recommend you run this file with cmd or terminal otherwise you can get errors
 def main():
-	intro.start()
+	#intro.start()
 	global floor_now, stat, x_pl, y_pl, water, oxy, text, sym_now, log
 	water = False
 	start_game = False
@@ -30,7 +30,7 @@ def main():
 		action.game.show_table(floor_now,stat['overview'],x_pl,y_pl,stat['name'],stat['icon'],stat['class'],stat['level'],stat['exp'],stat['max_exp'],stat['hp'],stat['hp_max'], stat['gold'], water,oxy, text, sym_now) #name, icon, class_, level, exp, max_exp, hp, hp_max
 		while True:
 			try:
-				key = getch.getch_().decode('utf-8').upper()
+				key = getch.getch_()
 				break
 			except:
 				continue

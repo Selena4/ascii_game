@@ -93,8 +93,10 @@ class game:
 			print('* L - legend of map')
 			print('* I - show inventory')
 			print('* Z - exit with save')
+			print('* E - show equipment')
+			print('* C - hero\'s show characteristic')
 			print('* [ - use potion of health')
-			print('* press any key')
+			print('\n[Enter]')
 			getch.getch()
 		if key == "Z":
 			os.system('cls')
